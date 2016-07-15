@@ -41,6 +41,20 @@ app.get('/', function homepage(req, res) {
 
 });
 
+////////////////////
+//  DATA
+///////////////////
+
+var profile = [
+  {
+    name: "Jason Lee",
+    current_city: "San Francisco",
+    birth_date: "February 7, 1985",
+    github_link: "https://github.com/JsonLitz",
+    github_profile_image: "https://avatars0.githubusercontent.com/u/15699145?v=3&s=460"
+
+  }
+];
 
 /*
  * JSON API Endpoints
@@ -68,19 +82,7 @@ app.get('/api/profile', function api_profile(req, res){
 
 
 
-////////////////////
-//  DATA
-///////////////////
 
-var profile = [
-  {
-    Name: 'Jason Lee',
-    current city: "San Francisco",
-    birth_date: "February 7, 1985",
-    github_link: 'https://github.com/JsonLitz',
-    github_profile_image: 'https://avatars0.githubusercontent.com/u/15699145?v=3&s=460'
-  }
-];
 
 
 
