@@ -1,10 +1,12 @@
 // require express and other modules
-var express = require('express'),
-    app = express();
+var express    = require('express'),
+    bodyParser = require('body-parser');
+    db         = require('./models');
+    app        = express();
 
 // parse incoming urlencoded form data
 // and populate the req.body object
-var bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // allow cross origin requests (optional)
@@ -19,7 +21,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -35,6 +37,8 @@ app.use(express.static('public'));
 
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
+  // res.json(profile);
+
 });
 
 
@@ -54,8 +58,31 @@ app.get('/api', function api_index(req, res) {
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
       {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
     ]
-  })
 });
+});
+
+app.get('/api/profile', function api_profile(req, res){
+    res.json(profile);
+
+});
+
+
+
+////////////////////
+//  DATA
+///////////////////
+
+var profile = [
+  {
+    Name: 'Jason Lee',
+    current city: "San Francisco",
+    birth_date: "February 7, 1985",
+    github_link: 'https://github.com/JsonLitz',
+    github_profile_image: 'https://avatars0.githubusercontent.com/u/15699145?v=3&s=460'
+  }
+];
+
+
 
 /**********
  * SERVER *
