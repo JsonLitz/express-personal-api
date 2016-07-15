@@ -3,6 +3,27 @@
 
 var db = require('./models');
 
+
+var cities = [
+{
+    city: 'Atlanta',
+    state: 'Georgia',
+    photo:'asd',
+    state_bird:""
+},
+{
+    city: 'New York City',
+    state: 'New York',
+    photo:'asd',
+    state_bird:""
+},
+{
+    city: 'San Antonio',
+    state: 'Texas',
+    photo:'asd',
+    state_bird:""
+}
+];
 // var new_campsite = {description: "Sharp rocks. Middle of nowhere."}
 
 // db.Campsite.create(new_campsite, function(err, campsite){

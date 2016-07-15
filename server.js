@@ -65,6 +65,14 @@ var profile = [
 /*
  * JSON API Endpoints
  */
+ app.get('/api/cities', function (req, res) {
+  db.City.find(function(err, cities){
+    if (err) {
+      return console.log("Error: ", err);
+    }
+    res.json(cities);
+  });
+});
 
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
