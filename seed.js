@@ -34,3 +34,19 @@ var cities = [
 //   console.log("Created new campsite", campsite._id)
 //   process.exit(); // we're all done! Exit the program.
 // })
+
+db.City.remove({}, function(err, cities) {
+  if (err) {
+    console.log('Error occurred in remove', err);
+  } else {
+    console.log('removed all cities');
+
+    db.City.create(cities_list, function(err, cities){
+      if (err) {
+        return console.log('err', err);
+      }
+      console.log("created" +  cities.length + "cities");
+      process.exit();
+    });
+  }
+});
