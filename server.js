@@ -1,12 +1,12 @@
 // require express and other modules
 var express    = require('express'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
     db         = require('./models');
     app        = express();
 
 // parse incoming urlencoded form data
 // and populate the req.body object
-
+// var db = require('./models');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // allow cross origin requests (optional)
@@ -21,7 +21,6 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-var db = require('./models');
 
 /**********
  * ROUTES *
@@ -55,7 +54,23 @@ var profile = [
         {
         hobbies: "cycling, drawing, movies",
         favFoods: "mexican, vietnamese, korean",
-        weaknesses: "fire, bullets, mildly cold weather, lasers, redheads"
+        weaknesses: "fire, bullets, mildly cold weather, lasers"
+        }]
+
+  }
+];
+var cities = [
+  {
+    name: "Jason Lee",
+    current_city: "San potato",
+    birth_date: "potato 7,",
+    github_link: "https://github.com/JsonLitz",
+    github_profile_image: "https://avatars0.githubusercontent.com/u/15699145?v=3&s=460",
+    factoids:[
+        {
+        hobbies: "potato, potato, movies",
+        favFoods: "potato, potato, korean",
+        weaknesses: "potato, bullets, mildly cold weather, lasers"
         }]
 
   }
@@ -64,37 +79,57 @@ var profile = [
 /*
  * JSON API Endpoints
  */
- app.get('/api/cities', function (req, res) {
-  db.City.find(function(err, cities){
-    if (err) {
-      return console.log("Error: ", err);
-    }
-    res.json(cities);
-  });
-});
+
+
+
+//  app.get('/api/cities', function (req, res) {
+//   db.City.find()
+//  .populate('city')
+//  .exec(function(err, cities){
+//     if (err) {
+//         console.log('cities');
+//       return console.log("Error: ", err);
+//     }
+//     res.json(cities);
+//     console.log('cities');
+//
+//   });
+// });
 
 
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentation_url: "https://github.com/JsonLitz", // CHANGE ME
-    base_url: "https://calm-fjord-77914.herokuapp.com/", // CHANGE ME
+    documentation_url: "https://github.com/JsonLitz",
+    base_url: "https://calm-fjord-77914.herokuapp.com/",
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Data about me"},
+      {method: "GET", path: "/api/cities", description: "New cities"}
     ]
 });
+
+
+app.get('/api/cities', function (req, res){
+  db.City.find(function(err, cities){
+     if (err) { return console.log("index error: " + err); }
+     res.json(cities);
+  });
 });
 
 app.get('/api/profile', function api_profile(req, res){
     res.json(profile);
 
 });
+app.post('/api/post', function(req, res){
+    console.log('test');
+    res.end();
+});
 
 
 
+});
 
 
 

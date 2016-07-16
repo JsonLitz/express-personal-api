@@ -4,48 +4,39 @@
 var db = require('./models');
 
 
-var cities = [
+var newCities = [
 {
     city: 'Atlanta',
     state: 'Georgia',
     photo:'asd',
-    state_bird:""
+    state_bird:''
 },
 {
     city: 'New York City',
     state: 'New York',
     photo:'asd',
-    state_bird:""
+    state_bird:''
 },
 {
     city: 'San Antonio',
     state: 'Texas',
     photo:'asd',
-    state_bird:""
+    state_bird:''
 }
 ];
-// var new_campsite = {description: "Sharp rocks. Middle of nowhere."}
-
-// db.Campsite.create(new_campsite, function(err, campsite){
-//   if (err){
-//     return console.log("Error:", err);
-//   }
-
-//   console.log("Created new campsite", campsite._id)
-//   process.exit(); // we're all done! Exit the program.
-// })
 
 db.City.remove({}, function(err, cities) {
   if (err) {
     console.log('Error occurred in remove', err);
+    return;
   } else {
     console.log('removed all cities');
 
-    db.City.create(cities_list, function(err, cities){
+    db.City.create(newCities, function(err, cities){
       if (err) {
         return console.log('err', err);
       }
-      console.log("created" +  cities.length + "cities");
+      console.log("created" +  newCities.length + "cities");
       process.exit();
     });
   }
