@@ -59,22 +59,22 @@ var profile = [
 
   }
 ];
-var cities = [
-  {
-    name: "Jason Lee",
-    current_city: "San potato",
-    birth_date: "potato 7,",
-    github_link: "https://github.com/JsonLitz",
-    github_profile_image: "https://avatars0.githubusercontent.com/u/15699145?v=3&s=460",
-    factoids:[
-        {
-        hobbies: "potato, potato, movies",
-        favFoods: "potato, potato, korean",
-        weaknesses: "potato, bullets, mildly cold weather, lasers"
-        }]
-
-  }
-];
+// var cities = [
+//   {
+//     name: "Jason Lee",
+//     current_city: "San potato",
+//     birth_date: "potato 7,",
+//     github_link: "https://github.com/JsonLitz",
+//     github_profile_image: "https://avatars0.githubusercontent.com/u/15699145?v=3&s=460",
+//     factoids:[
+//         {
+//         hobbies: "potato, potato, movies",
+//         favFoods: "potato, potato, korean",
+//         weaknesses: "potato, bullets, mildly cold weather, lasers"
+//         }]
+//
+//   }
+// ];
 
 /*
  * JSON API Endpoints
@@ -118,18 +118,29 @@ app.get('/api/cities', function (req, res){
   });
 });
 
-app.get('/api/profile', function api_profile(req, res){
-    res.json(profile);
-
+app.get('/api/cities/:id', function(req, res) {
+  // find one book by its id
+  db.City.findById(req.params.id, function(err, city) {
+    if (err) {
+      return console.log("show error: " + err);
+    }
+    res.json(city);
+  });
 });
+
+app.get('/api/profile', function (req, res){
+    // db.Profile.find(function(err, profiles){
+    //     if (err) {return console.log("index error: " + err);}
+        res.json(profile);
+    });
+});
+
 app.post('/api/post', function(req, res){
     console.log('test');
     res.end();
 });
 
 
-
-});
 
 
 

@@ -1,19 +1,21 @@
-// var mongoose = require('mongoose'),
-//   Schema = mongoose.Schema;
-//
-//   var profile = [
-//     {
-//       name: "Jason Lee",
-//       current_city: "San Francisco",
-//       birth_date: "February 7,",
-//       github_link: "https://github.com/JsonLitz",
-//       github_profile_image: "https://avatars0.githubusercontent.com/u/15699145?v=3&s=460",
-//       factoids:[
-//           {
-//           hobbies: "cycling, drawing, movies",
-//           favFoods: "mexican, vietnamese, korean",
-//           weaknesses: "fire, bullets, mildly cold weather, lasers, redheads"
-//           }]
-//
-//     }
-//   ];
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+  var ProfileSchema = new Schema({
+      name: String,
+      current_city: String,
+      birth_date: String,
+      github_link: String,
+      github_profile_image: String,
+      factoids:
+          {
+              hobbies: String,
+              favFoods: String,
+              weaknesses: String,
+          }
+
+      });
+
+
+    var Profile= mongoose.model('Profile', ProfileSchema);
+    module.exports = Profile;
