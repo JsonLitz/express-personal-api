@@ -62,19 +62,27 @@ app.get('/api', function api_index(req, res) {
         method: "GET",
         path: "/api",
         description: "Describes all available endpoints"
-      }, {
+        }, {
         method: "GET",
         path: "/api/profile",
         description: "Data about me"
-      }, {
+        }, {
         method: "GET",
         path: "/api/cities",
         description: "New cities"
-      }, {
+        }, {
         method: "GET",
         path: "/api/cities/:id",
         description: "City by ID"
-      }
+        },  {
+        method: "POST",
+        path: "/api/cities",
+        description: "Create a new city entry"
+        },  {
+        method: "DELETE",
+        path: "/api/cities/:id",
+        description: "Destroy a city"
+        }
 
     ]
   });
@@ -91,7 +99,7 @@ app.get('/api', function api_index(req, res) {
 
   //find one city by id
   app.get('/api/cities/:id', function(req, res) {
-      
+
     db.City.findById(req.params.id, function(err, city) {
       if (err) {
         return console.log("show error: " + err);
@@ -105,7 +113,7 @@ app.get('/api', function api_index(req, res) {
     res.json(profile);
   });
 
-  // delete book
+  // delete city
   app.delete('/api/cities/:id', function(req, res) {
     // get city id from url params (`req.params`)
     console.log(req.params);
@@ -121,7 +129,7 @@ app.get('/api', function api_index(req, res) {
 
 
 app.post('/api/cities', function(req, res) {
-  // create new book with form data (`req.body`)
+  // create new city with form data (`req.body`)
   var newCity = new db.City({
     name: req.body.city,
     state: req.body.state,
@@ -133,29 +141,26 @@ newCity.save(function handleDBCities(err, savedCity) {
 });
   console.log(newCity.name);
 
-  // var newBook = new db.Book({
-  //   title: req.body.title,
-  //   author: newAuthor,
-  //   image: req.body.image,
-  //   releaseDate: req.body.releaseDate,
-  // });
-  // this code will only add an author to a book if the author already exists
-//   db.Author.findOne({
-//     name: req.body.city
-//   }, function(err, author) {
-//     console.log('author', author);
-//     console.log('err', err);
-//     newBook.author = author;
-//     // add newBook to database
-//     newBook.save(function(err, book) {
-//       if (err) {
-//         return console.log("create error: " + err);
-//       }
-//       console.log("created ", book.title);
-//       res.json(book);
     });
-//   });
-// });
+// update city by id
+app.put('/api/cities/:id', function updateCity(req,res) {
+  db.Dancemove.findOneAndUpdate({
+    _id: req.params.id},
+    {$set: { city: req.body.city,
+             state: req.body.state,
+             photo: req.body.photo,
+             state_bird: req.body.state_bird,
+           }}, { upsert: true },
+           function(err, foundCity){
+          if (err) {
+        return console.log("create error: " + err);
+      } else {
+          console.log(foundCity);
+          res.json(foundCity);
+        }
+    });
+  });
+
 
 /**********
  * SERVER *
