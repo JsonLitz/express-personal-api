@@ -1,8 +1,8 @@
 // require express and other modules
-var express     = require('express'),
-    bodyParser  = require('body-parser'),
-    db          = require('./models');
-    app         = express();
+var express = require('express'),
+  bodyParser = require('body-parser'),
+  db = require('./models');
+app = express();
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -62,27 +62,27 @@ app.get('/api', function api_index(req, res) {
         method: "GET",
         path: "/api",
         description: "Describes all available endpoints"
-        }, {
+      }, {
         method: "GET",
         path: "/api/profile",
         description: "Data about me"
-        }, {
+      }, {
         method: "GET",
         path: "/api/cities",
         description: "New cities"
-        }, {
+      }, {
         method: "GET",
         path: "/api/cities/:id",
         description: "City by ID"
-        },  {
+      }, {
         method: "POST",
         path: "/api/cities",
         description: "Create a new city entry"
-        },  {
+      }, {
         method: "DELETE",
         path: "/api/cities/:id",
         description: "Destroy a city"
-        }
+      }
 
     ]
   });
@@ -121,12 +121,11 @@ app.get('/api', function api_index(req, res) {
 
     db.City.findOneAndRemove({
       _id: cityId
-  }, function(err, deletedCity) {
+    }, function(err, deletedCity) {
       res.json(deletedCity);
     });
   });
 });
-
 
 app.post('/api/cities', function(req, res) {
   // create new city with form data (`req.body`)
@@ -134,33 +133,36 @@ app.post('/api/cities', function(req, res) {
     name: req.body.city,
     state: req.body.state,
     photo: req.body.photo,
-    state_bird:req.body.state_bird,
+    state_bird: req.body.state_bird,
   });
-newCity.save(function handleDBCities(err, savedCity) {
+  newCity.save(function handleDBCities(err, savedCity) {
     res.redirect('/');
-});
+  });
   console.log(newCity.name);
 
-    });
+});
 // update city by id
-app.put('/api/cities/:id', function updateCity(req,res) {
-  db.Dancemove.findOneAndUpdate({
-    _id: req.params.id},
-    {$set: { city: req.body.city,
-             state: req.body.state,
-             photo: req.body.photo,
-             state_bird: req.body.state_bird,
-           }}, { upsert: true },
-           function(err, foundCity){
-          if (err) {
+app.put('/api/cities/:id', function updateCity(req, res) {
+  db.City.findOneAndUpdate({
+      _id: req.params.id
+  },{
+       $set: {
+        city: req.body.city,
+        state: req.body.state,
+        photo: req.body.photo,
+        state_bird: req.body.state_bird,
+        }
+    },
+    {upsert: true},
+    function(err, foundCity) {
+      if (err) {
         return console.log("create error: " + err);
       } else {
-          console.log(foundCity);
-          res.json(foundCity);
-        }
+        console.log(foundCity);
+        res.json(foundCity);
+      }
     });
-  });
-
+});
 
 /**********
  * SERVER *

@@ -61,7 +61,7 @@ function handleSuccess(json) {
 }
 
 function handleError(e) {
-  console.log('uh oh');
+  console.log('goddammit why wont you work on refresh');
   $('#cityTarget').text('Failed to load cities, is the server working?');
 }
 

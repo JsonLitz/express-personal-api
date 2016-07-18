@@ -2,13 +2,14 @@
 // simply run: `node seed.js` from the root of this project folder.
 
 var db = require('./models');
-
+var outkast = './public/images/outkast.jpg';
+var empire = './public/images/empire.gif';
 
 var newCities =[
     {
     city: 'Atlanta',
     state: 'Georgia',
-    photo:'url:http://www.konbini.com/us/files/2016/03/outkast.jpg',
+    photo: outkast,
     state_bird:'Brown Thrasher'
     },
     {
@@ -22,6 +23,12 @@ var newCities =[
     state: 'Texas',
     photo:'asd',
     state_bird:'Northern mockingbird'
+    },
+    {
+    city: 'Baltimore',
+    state: 'Maryland',
+    photo:'asd',
+    state_bird:'Baltimore oriole'
     }
 ];
 
