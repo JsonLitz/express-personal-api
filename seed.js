@@ -15,19 +15,19 @@ var newCities =[
     {
     city: 'New York City',
     state: 'New York',
-    photo:'asd',
+    photo:empire,
     state_bird:'Eastern bluebird'
     },
     {
     city: 'San Antonio',
     state: 'Texas',
-    photo:'asd',
+    photo:'',
     state_bird:'Northern mockingbird'
     },
     {
     city: 'Baltimore',
     state: 'Maryland',
-    photo:'asd',
+    photo:'',
     state_bird:'Baltimore oriole'
     }
 ];

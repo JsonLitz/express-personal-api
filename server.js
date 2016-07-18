@@ -86,6 +86,7 @@ app.get('/api', function api_index(req, res) {
 
     ]
   });
+});
 
   //find all cities
   app.get('/api/cities', function(req, res) {
@@ -125,7 +126,6 @@ app.get('/api', function api_index(req, res) {
       res.json(deletedCity);
     });
   });
-});
 
 app.post('/api/cities', function(req, res) {
   // create new city with form data (`req.body`)
