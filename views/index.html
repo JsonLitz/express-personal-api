@@ -1,30 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Blank</title>
+        <!-- STYLESHEETS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles/styles.css">
+        <!-- VENDOR SCRIPTS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js">
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js">
+        </script>
+        <!-- APPLICATION SCRIPTS -->
+        <script src="/scripts/app.js"></script>
+    </head>
 
-    <title>Blank</title>
 
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/styles.css">
 
-    <!-- VENDOR SCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
-    <!-- APPLICATION SCRIPTS -->
-    <script src="/scripts/app.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <h1><a href="/api">Hi there! Read My API Documentation</a></h1>
-          <h4></h4>
+
+    <body>
+        <div class="container">
+            <h1 class="text-center">Cities App</h1>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <form class="form-inline" action="/api/cities" method="POST" id="newCity">
+                        <div class="form-group">
+                            <h3>Update my cities</h3>
+                            <label for="city">City</label>
+                            </br>
+                            <input type="text" class="form-control" name="city" placeholder="City name">
+                        </div>
+                            </br>
+                        <div class="form-group">
+                            <label for="state">state</label>
+                            </br>
+                            <input type="text" class="form-control" name="state" placeholder="*">
+                        </div>
+                        </br>
+                        <div class="form-group">
+                            <label for="photo">Photo</label>
+                            </br>
+                            <input type="text" class="form-control" name="photo" placeholder="URL">
+                        </div>
+                        </br>
+                        <div class="form-group">
+                            <label for="photo">State Bird</label>
+                        </br>
+                            <input type="text" class="form-control" name="state_bird" placeholder="Bird">
+                        </div>
+                        </br>
+
+                        <button type="submit" class="btn btn-success">Create city</button>
+                    </form>
+                    <div id='citiesTarget'>
+                        <script id="cities-template" type="text/x-handlebars-template">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th COLSPAN="6"><br><h3>List of cities</h3></th>
+                                    </tr>
+                                    <tr>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Photo</th>
+                                        <th>Birds</th>
+                                        <th>Remove City</th>
+                                    </tr>
+                                    {{#each cities}}
+                                    <tr ALIGN="CENTER">
+                                        <td>{{city}}</td>
+                                        <td>{{state}}</td>
+                                        <td>{{photo}}</td>
+                                        <td>{{state_bird}}</td>
+                                        <td><button type="button" name="button" class="deleteBtn btn btn-danger center" data-id={{_id}}>Delete</button></td>
+                                    </tr>
+                                </table>
+
+                                {{/each}}
+
+                            </script>
+                            <!-- handlebars template -->
+
+                        </div>
+                    </br>
+                    <h4><a href="/api">Read My API Documentation</a></h4>
+                </div>
+            </div>
+
         </div>
-      </div>
-    </div>
-  </body>
-</html>
+    </body>
+    </html>

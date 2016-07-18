@@ -4,5 +4,3 @@ mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/personal-api")
 
 module.exports.City = require("./city.js");
 // module.exports.Profile = require("./profile.js");
-
-// module.exports.Author = require('./profile.js');
