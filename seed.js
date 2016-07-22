@@ -2,8 +2,8 @@
 // simply run: `node seed.js` from the root of this project folder.
 
 var db = require('./models');
-var outkast = './public/images/outkast.jpg';
-var empire = './public/images/empire.gif';
+var outkast = 'images/outkast.jpg';
+var empire = 'images/empire.gif';
 
 var newCities =[
     {

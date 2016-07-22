@@ -130,7 +130,7 @@ app.get('/api', function api_index(req, res) {
 app.post('/api/cities', function(req, res) {
   // create new city with form data (`req.body`)
   var newCity = new db.City({
-    name: req.body.city,
+    city: req.body.city,
     state: req.body.state,
     photo: req.body.photo,
     state_bird: req.body.state_bird,

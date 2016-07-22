@@ -47,8 +47,7 @@ console.log("Sanity Check: JS is working!");
 function render (allCities) {
   // empty existing posts from view
   $citiesList.empty();
-console.log(allCities);
-  // pass `allBooks` into the template function
+  // pass `allCities` into the template function
   var citiesHtml = template({ cities: allCities });
 
   // append html to the view
